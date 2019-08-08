@@ -24,7 +24,6 @@ test = pd.read_csv('data/test.csv')
 train['email'] = train['email'].apply(lambda x: " ".join(x.lower() for x in x.split()))
 
 # remove HTML Tags
-raw_html = "<hi>huhu</hello>"
 html_tags = re.compile('<.*?>')
 train['email'] = train['email'].apply(lambda x: re.sub(html_tags, '', x))
 
