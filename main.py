@@ -16,7 +16,7 @@ stop = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "you
         "should", "now"]
 # python3 -m textblob.download_corpora
 
-
+print("Building Model..")
 train = pd.read_csv('data/training.csv')
 test = pd.read_csv('data/test.csv')
 
@@ -48,6 +48,13 @@ X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
 
 clf = MultinomialNB().fit(X_train_tfidf, train['type'])
 
+print("Building Model Completed..\n\n")
 
-predict_this = input("Enter text you want predict :\n")
-print("Enterd Text is a ",clf.predict(count_vect.transform([predict_this])))
+inp = True
+while inp:
+    predict_this = input("Enter text you want predict :\n")
+    print("Enterd Text is a ",clf.predict(count_vect.transform([predict_this])))
+    x = input("\n\n\nEnter any key to predict again or 'q' to Quit\n")
+    if x in ['q','Q']:
+        inp = False
+
